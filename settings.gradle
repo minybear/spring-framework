@@ -1,5 +1,14 @@
 pluginManagement {
 	repositories {
+		//阿里云仓库全家桶
+		maven{ url 'https://maven.aliyun.com/repository/central'}
+		maven{ url 'https://maven.aliyun.com/repository/public' }
+		maven{ url 'https://maven.aliyun.com/repository/google'}
+		maven{ url 'https://maven.aliyun.com/repository/gradle-plugin'} // gradle 相关插件仓库
+		maven{ url 'https://maven.aliyun.com/repository/spring'}
+		maven{ url 'https://maven.aliyun.com/repository/spring-plugin'}
+		maven{ url 'https://maven.aliyun.com/mvn/guide'}
+		maven{ url 'https://maven.aliyun.com/repository/apache-snapshots'}
 		gradlePluginPortal()
 		maven { url 'https://repo.spring.io/plugins-release' }
 	}
@@ -36,3 +45,5 @@ rootProject.name = "spring"
 rootProject.children.each {project ->
 	project.buildFileName = "${project.name}.gradle"
 }
+include 'read-source'
+
