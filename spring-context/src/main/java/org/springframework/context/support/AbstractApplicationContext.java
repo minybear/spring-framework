@@ -156,6 +156,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	static {
 		// Eagerly load the ContextClosedEvent class to avoid weird classloader issues
 		// on application shutdown in WebLogic 8.1. (Reported by Dustin Woods.)
+		// 加载上下文关闭事件对象
 		ContextClosedEvent.class.getName();
 	}
 
@@ -236,6 +237,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	public AbstractApplicationContext(@Nullable ApplicationContext parent) {
 		this();
+		// 如果有父级上下文对象，这边会做Environment对象合并
 		setParent(parent);
 	}
 
@@ -456,6 +458,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver
 	 */
 	protected ResourcePatternResolver getResourcePatternResolver() {
+		// 支持Ant风格的资源模式解析器，类中有属性是AntPathMatcher
 		return new PathMatchingResourcePatternResolver(this);
 	}
 

@@ -76,6 +76,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	}
 
 	/**
+	 * 创建新的 ClassPathXmlApplicationContext，从给定的 XML 文件加载定义并自动刷新上下文。
 	 * Create a new ClassPathXmlApplicationContext, loading the definitions
 	 * from the given XML file and automatically refreshing the context.
 	 * @param configLocation resource location
@@ -137,8 +138,9 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	public ClassPathXmlApplicationContext(
 			String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)
 			throws BeansException {
-
+		// parent is null
 		super(parent);
+		// 调用了父类方法，设置xml资源路径
 		setConfigLocations(configLocations);
 		if (refresh) {
 			refresh();
