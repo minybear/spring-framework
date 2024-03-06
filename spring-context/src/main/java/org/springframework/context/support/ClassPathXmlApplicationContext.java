@@ -142,6 +142,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 		super(parent);
 		// 调用了父类方法，设置xml资源路径
 		setConfigLocations(configLocations);
+		// 默认refresh为true
 		if (refresh) {
 			refresh();
 		}

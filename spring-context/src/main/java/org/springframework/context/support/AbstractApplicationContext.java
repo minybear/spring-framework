@@ -318,6 +318,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	@Override
 	public ConfigurableEnvironment getEnvironment() {
 		if (this.environment == null) {
+			// 如果上下文没有环境对象，需要创建一个StandardEnvironment
 			this.environment = createEnvironment();
 		}
 		return this.environment;
@@ -518,8 +519,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
+		// 这个同步锁不是来解决并发问题的，是spring启动和停止的一个标识位，
 		synchronized (this.startupShutdownMonitor) {
 			// Prepare this context for refreshing.
+			/**
+			 * 1. 设置启动时间
+			 * 2. 设置激活状态和关闭状态标识位
+			 * 3. 替换环境变量中的占位符，方法没有具体实现，留给子类具体实现initPropertySources
+			 * 4. 校验当前环境中的必要变量
+			 * 5. 初始化事件监听器和事件
+			 */
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
